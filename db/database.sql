@@ -15,7 +15,7 @@ CREATE TABLE author (
     last_name VARCHAR(60) NOT NULL,
     date_of_birth DATE,
     country_of_birth VARCHAR(150),
-    favorite BOOLEAN
+    favorite BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE series (
