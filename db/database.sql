@@ -21,6 +21,7 @@ CREATE TABLE author (
 CREATE TABLE series (
     series_id UUID NOT NULL PRIMARY KEY,
     series_title VARCHAR(125) NOT NULL,
+    author_id UUID NOT NULL REFERENCES author (author_id),
     number_of_works SMALLINT NOT NULL
 );
 
