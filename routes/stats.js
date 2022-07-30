@@ -7,6 +7,14 @@ router.get('/:year', async (req, res) => {
     try {
         const { year } = req.params;
 
+        // number of books read
+        const numBooks = await pool.query(
+            `SELECT COUNT(*)
+            FROM book
+            WHERE end_reading_date BETWEEN $1 AND $2`,
+            [`${year}-01-01`, `${year + 1}-01-01`]
+        );
+
         // most & least read genres (1)
         const genreStats = await pool.query(
             `SELECT genre, COUNT(*)
@@ -45,6 +53,7 @@ router.get('/:year', async (req, res) => {
         // highest & lowest rated books (1)
         
         res.status(200).json({
+            "booksRead": numBooks.rows[0].count,
             "mostReadGenre": mostGenre,
             "leastReadGenre": leastGenre,
             "mostReadAuthor": mostAuthor,
