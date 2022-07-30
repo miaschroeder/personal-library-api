@@ -4,6 +4,7 @@ require('dotenv').config();
 const authorRouter = require('./routes/author');
 const seriesRouter = require('./routes/series');
 const bookRouter = require('./routes/book');
+const statsRouter = require('./routes/stats');
 const app = express();
 
 // middleware
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use('/api/v1/author', authorRouter);
 app.use('/api/v1/series', seriesRouter);
 app.use('/api/v1/book', bookRouter);
+app.use('/api/v1/stats', statsRouter);
 
 const port = process.env.PORT || 3001;
 
